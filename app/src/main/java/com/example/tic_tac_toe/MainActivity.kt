@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.graphics.toColorInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +34,13 @@ class MainActivity : AppCompatActivity() {
             btn.setOnClickListener {
                 if (gameOver || btn.text.isNotEmpty()) return@setOnClickListener
                 btn.text = if (currentIsX) "X" else "O"
-//                btn.isEnabled = false
+
+                val color = if (currentIsX) "#FF0000" else "#0000FF"
+                btn.setTextColor(color.toColorInt())
+
+                val oppositeColor = if (currentIsX) "#0000FF" else "#FF0000"
+                status.setTextColor(oppositeColor.toColorInt())
+
                 if (checkWin()) {
                     status.text = "Player \"${if (currentIsX) "X" else "O"}\" wins"
                     gameOver = true
