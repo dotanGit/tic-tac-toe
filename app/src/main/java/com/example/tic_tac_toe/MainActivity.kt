@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             btn.setOnClickListener {
                 if (gameOver || btn.text.isNotEmpty()) return@setOnClickListener
                 btn.text = if (currentIsX) "X" else "O"
-
                 val color = if (currentIsX) "#FF0000" else "#0000FF"
                 btn.setTextColor(color.toColorInt())
 
@@ -50,6 +49,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     currentIsX = !currentIsX
                     status.text = "Player \"${if (currentIsX) "X" else "O"}\" Turn"
+                    val oppositeColor = if (currentIsX) "#FF0000" else "#0000FF"
+                    status.setTextColor(oppositeColor.toColorInt())
                 }
             }
         }
